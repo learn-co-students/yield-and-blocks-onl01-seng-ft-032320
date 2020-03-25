@@ -1,0 +1,44 @@
+do / end (or {}) is a BLOCK
+
+blocks rely on yields (.each / .collect for example)
+
+YIELD will allow you to call method with a block of code + pass the torch / yield / to that block
+
+YIELD = "Stop executing the code in this method, instead.. execute the code in this block. The return to code in the method."
+
+def yielding
+  puts "the program is executing the code inside the method"
+  yield
+  puts "now we are back in the method"
+end
+
+To call this method^:
+yielding { puts "the method has yielded to the block!" }
+-OR-
+yielding do
+  puts "the method has yielded to the block!"
+end
+
+When we call yielding:
+
+the program is executing the code inside the method
+(yield) the method has yielded to the block!
+now we are back in the method
+
+yield can take parameters:
+
+yield(num)
+
+def yielding_with_arguments(num)
+  puts "the program is executing the code inside the method"
+  yield(num)
+  puts "now we are back in the method"
+end
+
+yielding_with_arguments(2) {|i| puts i * 2}
+
+will output:
+
+the program is executing the code inside the method
+4
+now we are back in the method
